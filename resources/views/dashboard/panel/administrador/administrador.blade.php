@@ -32,7 +32,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Registro de Usuario </h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Registro de Diezmos </h1>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -46,8 +46,8 @@
 						<div class="tab-pane fade active in" id="new">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-xs-12 col-md-10 col-md-offset-1">	
-									    <form id="saveAdministrador" method="POST" action="{{ route('admin.store') }}">
+									<div class="col-xs-12 col-md-10 col-md-offset-1">
+										<form id="saveAdmin" method="POST" action="{{ route('admin.store') }}">
 											{{ csrf_field() }}
 											<div class="row">
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
@@ -99,7 +99,38 @@
 								</div>
 							</div>
 						</div>
-						
+					  	<div class="tab-pane fade" id="list">
+							<div class="table-responsive">
+								<table id="ministerio" class="table table-striped table-bordered centered table-hover">  
+									<thead>
+										<tr>
+											<th class="text-center danger">N</th>
+											<th class="text-center danger">Usuario</th>
+											<th class="text-center danger">Contraseña</th>
+											<th class="text-center danger">Correo</th>
+											<th class="text-center danger">Ci</th>
+											<th class="text-center danger">Rol</th>
+											<th class="text-center danger">Editar</th>
+											<th class="text-center danger">Eliminar</th>
+										</tr>
+									</thead>
+									  <tbody>
+										@foreach ($admin as $admi)
+										<tr>
+											<td>{{ $admi->id}}</td>
+											<td>{{ $admi->user}}</td>
+											<td>{{ $admi->password}}</td>
+											<td>{{ $admi->email}}</td>
+											<td>{{ $admi->Ci}}</td>
+											<td>{{ $admi->rol}}</td>
+											<td><a href="#!" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
+											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
+										</tr>
+										@endforeach
+									</tbody>
+								 </table>
+							</div>
+					  	</div>
 					</div>
 				</div>
 			</div>
@@ -107,5 +138,12 @@
 	</section>
 @endsection
 @push('javascript-form')
-<script src="{{ asset('scripts/miembros/save.js') }}"></script>
+<script src="{{ asset('scripts/admin/save.js') }}"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#ministerio').DataTable();
+	} );
+	</script>
 @endpush
