@@ -20,7 +20,6 @@
     </head>
     
     <body>
-     
       <div class="container-login">
         <div class="wrap-login">
             <form class="login-form validate-form" id="formLogin"  method="post" action="{{ route('login') }}">

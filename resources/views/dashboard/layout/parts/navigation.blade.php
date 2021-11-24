@@ -5,8 +5,8 @@
 <!-- SideBar User info -->
 <div class="full-box dashboard-sideBar-UserInfo">
  <figure class="full-box">
-   <img src="./assets/img/avatar.jpg" alt="UserIcon">
-   <figcaption class="text-center text-titles">User Name</figcaption>
+   <img src="{{asset('assets/img/logo.png')}}"alt="UserIcon">	
+   <figcaption class="text-center text-titles"> {{ auth()->user()->user }}</figcaption>
  </figure>
  <ul class="full-box list-unstyled text-center">
    <li>

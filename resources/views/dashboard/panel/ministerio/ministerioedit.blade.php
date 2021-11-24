@@ -32,7 +32,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Modificar Miemnbros </h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Modificar Ministerio </h1>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -46,75 +46,41 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-12 col-md-10 col-md-offset-1">
-									    <form id="updateMiembros" method="POST" action="{{ route('miembro.update',['id'=>$miembro->Ci]) }}">
+										<form id="updateMinisterio" method="POST" action="{{ route('ministerio.update',['id'=>$ministerio->CodMinist])}}">
 											{{ csrf_field() }}
 											<div class="row">
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 									    	<div class="form-group label-floating">
-											  <label class="control-label">Nombre</label>
-											  <input required name="nombre" value="{{ $miembro->nombre }}" class="form-control" type="text">
+											  <label class="control-label">Codigo</label>
+											  <input class="form-control" value="{{ $ministerio->CodMinist }}" name="CodMinist" type="text">
 											</div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											<div class="form-group label-floating">
-												<label class="control-label">Apellido Paterno</label>
-												<input required name="apellidoP" value="{{ $miembro->apellidoP }}" class="form-control" type="text">
+												<label class="control-label">Nombre de Ministerio</label>
+												<input class="form-control" value="{{ $ministerio->NombreMinist }}" name="NombreMinist" type="text">
 											  </div>
 											  </div>
 											</div>
-											<div class="row">
-												<div class="col-xs-12 col-md-4 col-md-offset-1">
-											  <div class="form-group label-floating">
-												<label class="control-label">Apellido Materno</label>
-												<input required name="apellidoM" value="{{ $miembro->apellidoM }}" class="form-control" type="text">
-											  </div>
-											</div>
-											<div class="col-xs-12 col-md-4 col-md-offset-1">
-											  <div class="form-group label-floating">
-												<label class="control-label">Ci</label>
-												<input required name="Ci" type="number" value="{{ $miembro->Ci }}" class="form-control" type="text" readonly>
-											  </div>
-											</div>
-										</div>
 										<div class="row">
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group label-floating">
 												<label class="control-label">telefono</label>
-												<input required name="Telefono" type="number" value="{{ $miembro->Telefono }}" class="form-control" type="text">
+												<input class="form-control" value="{{ $ministerio->Telefono }}" name="Telefono" type="text">
 											  </div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group">
-												<label class="control-label">Fecha de Nacimiento</label>
-												<input required name="FechaNac" value="{{ $miembro->FechaNac }}" class="form-control" type="date">
+												<label class="control-label">Fecha de Creacion</label>
+												<input class="form-control" value="{{ $ministerio->FechaR }}" name="FechaR" type="date">
 											  </div>
 											</div>
 											</div>
-										<div class="row">
-											<div class="col-xs-12 col-md-4 col-md-offset-1">
-											  <div class="form-group">
-												<label class="control-label">Sexo</label>
-												  <select required name="sexo" value="{{ $miembro->sexo }}" class="form-control">
-													<option>Masculino</option>
-													<option>Femenino</option>
-												  </select>
-											  </div>
-											</div>
-											<div class="col-xs-12 col-md-4 col-md-offset-1">
-											<div class="form-group">
-										      <label class="control-label">Estado</label>
-										        <select required name="Estado" value="{{ $miembro->Estado }}" class="form-control">
-										          <option>Activo</option>
-										          <option>Inactivo</option>
-										        </select>
-										    </div>
-										</div>
-										</div>
 										<div class="row">
 										<div class="col-xs-12 col-md-9 col-md-offset-1">
 											<div class="form-group label-floating">
 												<label class="control-label">Direccion</label>
-												<input required name="Direccion" value="{{ $miembro->Direccion }}" class="form-control" type="text">
+												<input class="form-control" value="{{ $ministerio->DireccionM }}" name="DireccionM" type="text">
 											  </div>
 										</div>
 									</div>
@@ -133,5 +99,5 @@
 	</section>
 @endsection
 @push('javascript-form')
-<script src="{{ asset('scripts/miembros/save.js') }}"></script>
+<script src="{{ asset('scripts/ministerio/save.js') }}"></script>
 @endpush

@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Diezmo;
+use App\Models\Miembros;
 use Illuminate\Http\Request;
 
-class VentaController extends Controller
+class DiezmoController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +14,11 @@ class VentaController extends Controller
      */
     public function index()
     {
-        return view('dashboard.inicio');
+        $miembros=Miembros::get();
+        $diezmos=Diezmo::
+        join('miembros','miembros.Ci','diezmos.Ci')
+        ->get();
+        return view('dashboard.panel.ingresos.diezmos', compact('diezmos','miembros'));
     }
 
     /**
@@ -38,7 +39,15 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+            $save = Diezmo::insert([
+                "Ci" => $request->Ci,
+                "Fecha" => $request->Fecha,
+                "Bs" => $request->Bs,
+                "Dolar" => $request->Dolar,
+            ]);
+            return response()->json("registrado", 200);
+        
     }
 
     /**
@@ -47,9 +56,13 @@ class VentaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $miembros=Miembros::get();
+        $diezmos=Diezmo::
+        join('miembros','miembros.Ci','diezmos.Ci')
+        ->get();
+        return view('dashboard.panel.ingresos.diezmos', compact('diezmos','miembros'));
     }
 
     /**

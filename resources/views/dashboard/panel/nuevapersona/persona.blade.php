@@ -1,10 +1,8 @@
 @extends('dashboard.layout.layout')
 @push('css-header')
-
-<link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css')}}">
+  
 @endpush
 @section('content')
-
     	<!-- Content page-->
 	<section class="full-box dashboard-contentPage">
 		<!-- NavBar -->
@@ -34,7 +32,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Registro de Miemnbros </h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i> Registro de Nueva Persona </h1>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -55,13 +53,13 @@
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 									    	<div class="form-group label-floating">
 											  <label class="control-label">Nombre</label>
-											  <input required name="nombre" class="form-control" type="text">
+											  <input required name="Nombre" class="form-control" type="text">
 											</div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											<div class="form-group label-floating">
 												<label class="control-label">Apellido Paterno</label>
-												<input required name="apelldoP" class="form-control" type="text">
+												<input required name="ApelldoP" class="form-control" type="text">
 											  </div>
 											  </div>
 											</div>
@@ -69,13 +67,13 @@
 												<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group label-floating">
 												<label class="control-label">Apellido Materno</label>
-												<input required name="apelldoM" class="form-control" type="text">
+												<input required name="ApelldoM" class="form-control" type="text">
 											  </div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group label-floating">
 												<label class="control-label">Ci</label>
-												<input required name="CI" type="number" class="form-control" type="text">
+												<input required name="CIn" type="number" class="form-control" type="text">
 											  </div>
 											</div>
 										</div>
@@ -83,44 +81,36 @@
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group label-floating">
 												<label class="control-label">telefono</label>
-												<input required name="telefono" type="number" class="form-control" type="text">
+												<input required name="Telefono" type="number" class="form-control" type="text">
 											  </div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
-											  <div class="form-group">
-												<label class="control-label">Fecha de Nacimiento</label>
-												<input required name="fechaNac" class="form-control" type="date">
-											  </div>
-											</div>
+                                                <div class="form-group">
+                                                  <label class="control-label">Sexo</label>
+                                                    <select required name="Sexo" class="form-control">
+                                                      <option>Masculino</option>
+                                                      <option>Femenino</option>
+                                                    </select>
+                                                </div>
+                                              </div>
 											</div>
 										<div class="row">
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group">
-												<label class="control-label">Sexo</label>
-												  <select required name="sexo" class="form-control">
-													<option>Masculino</option>
-													<option>Femenino</option>
+												<label class="control-label">Actividad</label>
+												  <select required name="Actividad" class="form-control">
+													<option>1</option>
+													<option>2</option>
 												  </select>
 											  </div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
-											<div class="form-group">
-										      <label class="control-label">Estado</label>
-										        <select required name="estado" class="form-control">
-										          <option>Activo</option>
-										          <option>Inactivo</option>
-										        </select>
-										    </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Direccion</label>
+                                                    <input required name="Dirrecionn" class="form-control" type="text">
+                                                  </div>
+                                            </div>
 										</div>
-										</div>
-										<div class="row">
-										<div class="col-xs-12 col-md-9 col-md-offset-1">
-											<div class="form-group label-floating">
-												<label class="control-label">Direccion</label>
-												<input required name="dirrecion" class="form-control" type="text">
-											  </div>
-										</div>
-									</div>
 										    <p class="text-center">
 										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
 										    </p>
@@ -131,7 +121,7 @@
 						</div>
 					  	<div class="tab-pane fade" id="list">
 							<div class="table-responsive">
-								<table id="employee_data" class="table table-striped table-bordered centered table-hover"style="width:100%">
+								<table class="table table-hover text-center">
 									<thead>
 										<tr>
 											<th class="text-center">Nombre</th>
@@ -140,13 +130,10 @@
 											<th class="text-center">Ci</th>
 											<th class="text-center">Telefono</th>
 											<th class="text-center">Sexo</th>
-											<th class="text-center">Fecha de Nacimiento</th>
-											<th class="text-center">Estado</th>
+											<th class="text-center">Actividad</th>
 											<th class="text-center">Direccion</th>
-											<th class="text-center">Modificar</th>
-											<th class="text-center">Eliminar</th>
-											<th class="text-center">Agregar a Ministerio</th>
-
+											<th class="text-center">Update</th>
+											<th class="text-center">Delete</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -155,22 +142,28 @@
 											<td>{{ $miembro->nombre}}</td>
 											<td>{{ $miembro->apellidoP}}</td>
 											<td>{{ $miembro->apellidoM}}</td>
-											<td >{{ $miembro->Ci}}</td>
+											<td>{{ $miembro->Ci}}</td>
 											<td>{{ $miembro->Telefono}}</td>
 											<td>{{ $miembro->sexo}}</td>
-											<td>{{ $miembro->FechaNac}}</td>
-											<td>{{ $miembro->Estado}}</td>
+											<td>{{ $miembro->Actividad}}</td>
 											<td>{{ $miembro->Direccion}}</td>
 											<td><a href="{{ route('miembro.edit',['id'=>$miembro->Ci]) }}" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
 											<td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-											<td><a href="#!" id="{{ $miembro->Ci}}" class="btn btn-primary btn-raised btn-xs btn-modal-help ci"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i></a></td>
-
 										</tr>
 										@endforeach
 										
 									
 									</tbody>
 								</table>
+								<ul class="pagination pagination-sm">
+								  	<li class="disabled"><a href="#!">«</a></li>
+								  	<li class="active"><a href="#!">1</a></li>
+								  	<li><a href="#!">2</a></li>
+								  	<li><a href="#!">3</a></li>
+								  	<li><a href="#!">4</a></li>
+								  	<li><a href="#!">5</a></li>
+								  	<li><a href="#!">»</a></li>
+								</ul>
 							</div>
 					  	</div>
 					</div>
@@ -178,53 +171,7 @@
 			</div>
 		</div>
 	</section>
-
-	<div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
-	  	<div class="modal-dialog" role="document">
-		    <div class="modal-content">
-			    <div class="modal-header">
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			    	<h4 class="modal-title">registrar nuevo</h4>
-			    </div>
-			    <div class="modal-body">
-					<form id="saveDetalleMinisterio" method="POST" action="{{ route('detalle_ministerio.store') }}">
-						{{ csrf_field() }}
-					<div class="row">
-						<input type="text" name="Ci" id="ci" hidden>
-						<div class="col-xs-12 col-md-4 col-md-offset-1">
-							<label class="control-label">Ministerio</label>
-							<select required name="CodMinist" class="form-control">
-							 @foreach ($ministerios as $ministerio)
-							 <option value="{{$ministerio->CodMinist}}">{{$ministerio->NombreMinist}}</option>
-							 @endforeach
-							</select>
-						</div>
-						<div class="col-xs-12 col-md-4 col-md-offset-1">
-						  <div class="form-group">
-							<label class="control-label">Fecha</label>
-							<input class="form-control" name="Fecha" type="date" required>
-						  </div>
-						</div>
-						</div>
-						<p class="text-center">
-							<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
-						</p>
-					</form>
-			    </div>
-		      
-		    </div>
-	  	</div>
-	</div>
-	
 @endsection
 @push('javascript-form')
 <script src="{{ asset('scripts/miembros/save.js') }}"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-
-<script>
-$(document).ready(function() {
-    $('#employee_data').DataTable();
-} );
-</script>
 @endpush
