@@ -90,7 +90,7 @@
 						</div>
 					  	<div class="tab-pane fade" id="list">
 							<div class="table-responsive">
-								<table id="diezmo" class="table table-striped table-bordered centered table-hover">
+								<table id="ingreso" class="table table-striped table-bordered centered table-hover">
 									<thead>
 										<tr>
 											<th class="text-center">Cod</th>
@@ -99,6 +99,7 @@
 											<th class="text-center">Fecha</th>
 											<th class="text-center">Monto Bs</th>
                                             <th class="text-center">Dolar</th>
+											<th class="text-center">Eliminar</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -116,15 +117,7 @@
 										@endforeach
 									</tbody>
 								</table>
-								<ul class="pagination pagination-sm">
-								  	<li class="disabled"><a href="#!">«</a></li>
-								  	<li class="active"><a href="#!">1</a></li>
-								  	<li><a href="#!">2</a></li>
-								  	<li><a href="#!">3</a></li>
-								  	<li><a href="#!">4</a></li>
-								  	<li><a href="#!">5</a></li>
-								  	<li><a href="#!">»</a></li>
-								</ul>
+								
 							</div>
 					  	</div>
 					</div>
@@ -135,4 +128,11 @@
 @endsection
 @push('javascript-form')
 <script src="{{ asset('scripts/ofrenda/save.js') }}"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#ingreso').DataTable();
+	} );
+	</script>
 @endpush

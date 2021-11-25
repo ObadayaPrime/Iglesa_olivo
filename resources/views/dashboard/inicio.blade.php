@@ -1,10 +1,12 @@
 @extends('dashboard.layout.layout')
 @push('css-header')
-  
+
 @endpush
 @section('content')
+
 <section class="full-box dashboard-contentPage">
     <!-- NavBar -->
+
     <nav class="full-box dashboard-Navbar">
         <ul class="full-box list-unstyled text-right">
             <li class="pull-left">
@@ -52,7 +54,7 @@
                 Miembros
             </div>
             <div class="full-box tile-icon text-center">
-                <i class="zmdi zmdi-male-alt"></i>
+                <i class="zmdi zmdi-male-female"></i>
             </div>
             <div class="full-box tile-number text-titles">
                 <p class="full-box">10</p>
@@ -64,7 +66,7 @@
                 Ministerios
             </div>
             <div class="full-box tile-icon text-center">
-                <i class="zmdi zmdi-face"></i>
+                <i class="zmdi zmdi-tab"></i>
             </div>
             <div class="full-box tile-number text-titles">
                 <p class="full-box">70</p>
@@ -76,49 +78,63 @@
                 Diezmos
             </div>
             <div class="full-box tile-icon text-center">
-                <i class="zmdi zmdi-male-female"></i>
+                <i class="zmdi zmdi-money"></i>
             </div>
             <div class="full-box tile-number text-titles">
                 <p class="full-box">70</p>
                 <small>Registrar</small>
             </div>
         </article>
+
     </div>
     <div class="container-fluid">
         <div class="page-header">
           <h1 class="text-titles">Grafico<small>Ingresos</small></h1>
         </div>
-        <section id="cd-timeline" class="cd-container">
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img">
-                    <img src="./assets/img/avatar.jpg" alt="user-picture">
-                </div>
-                <div class="cd-timeline-content">
-                    <h4 class="text-center text-titles">1 - Name (Admin)</h4>
-                    <p class="text-center">
-                        <i class="zmdi zmdi-timer zmdi-hc-fw"></i> Start: <em>7:00 AM</em> &nbsp;&nbsp;&nbsp; 
-                        <i class="zmdi zmdi-time zmdi-hc-fw"></i> End: <em>7:17 AM</em>
-                    </p>
-                    <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
-                </div>
-            </div>  
-            <div class="cd-timeline-block">
-                <div class="cd-timeline-img">
-                    <img src="./assets/img/avatar.jpg" alt="user-picture">
-                </div>
-                <div class="cd-timeline-content">
-                    <h4 class="text-center text-titles">2 - Name (Teacher)</h4>
-                    <p class="text-center">
-                        <i class="zmdi zmdi-timer zmdi-hc-fw"></i> Start: <em>7:00 AM</em> &nbsp;&nbsp;&nbsp; 
-                        <i class="zmdi zmdi-time zmdi-hc-fw"></i> End: <em>7:17 AM</em>
-                    </p>
-                    <span class="cd-date"><i class="zmdi zmdi-calendar-note zmdi-hc-fw"></i> 07/07/2016</span>
-                </div>
-            </div>
-           
+       
+        <section class="container-fluid">
+           <canvas id="estadisticas"></canvas>
         </section>
 
 
     </div>
 </section>
 @endsection
+@push('javascript-form')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+<script>
+   var ctx = $('#estadisticas');
+    var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+           
+        }
+    }
+});
+        </script>
+@endpush
