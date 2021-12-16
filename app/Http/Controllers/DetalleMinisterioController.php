@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\DetalleMinisterio;
-use Illuminate\Http\Request;
-use App\Models\Miembros;
 use App\Models\Ministerio;
+use Illuminate\Http\Request;
+
 class DetalleMinisterioController extends Controller
 {
     /**
@@ -27,6 +28,19 @@ class DetalleMinisterioController extends Controller
         //
     }
 
+    public function imprimir($id)
+    {
+        $ministerio = Ministerio::where('ministerios.CodMinist', $id)->first();
+        $usuarios = DetalleMinisterio::select('miembros.*', 'detalle_ministerio.Fecha as fecha_registro')
+            ->where('detalle_ministerio.CodMinist', $id)
+            ->join('miembros', 'miembros.Ci', 'detalle_ministerio.Ci')
+            ->get();
+
+        $pdf = \PDF::loadview('dashboard.panel.ministerio.pdfdetalleM', compact('usuarios', 'ministerio'));
+        return $pdf->download('detalleM.pdf');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,32 +49,32 @@ class DetalleMinisterioController extends Controller
      */
     public function store(Request $request)
     {
-        $verificar=DetalleMinisterio::where('Ci',$request->Ci)
-        ->where('CodMinist',$request->CodMinist)->first();
+        $verificar = DetalleMinisterio::where('Ci', $request->Ci)
+            ->where('CodMinist', $request->CodMinist)->first();
         if ($verificar) {
             return response()->json([
-                "status"=>"error",
-                "message"=>'ya fue registrado'
+                "status" => "error",
+                "message" => 'ya fue registrado',
             ], 200);
-        }else {
-            $detalleMinisterio=DetalleMinisterio::insert([
-                'Ci'=>$request->Ci,
-                'CodMinist'=> $request->CodMinist,
-                'Fecha'=>$request->Fecha
+        } else {
+            $detalleMinisterio = DetalleMinisterio::insert([
+                'Ci' => $request->Ci,
+                'CodMinist' => $request->CodMinist,
+                'Fecha' => $request->Fecha,
             ]);
             if ($detalleMinisterio) {
                 return response()->json([
-                    "status"=>"ok",
-                    "message"=>'registrado correctamente'
+                    "status" => "ok",
+                    "message" => 'registrado correctamente',
                 ], 200);
-            }else {
+            } else {
                 return response()->json([
-                    "status"=>"error",
-                    "message"=>'hubo un error'
+                    "status" => "error",
+                    "message" => 'hubo un error',
                 ], 200);
             }
         }
-      
+
     }
 
     /**
@@ -70,13 +84,13 @@ class DetalleMinisterioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
-        $ministerio=Ministerio::where('ministerios.CodMinist',$id)->first();
-        $usuarios=DetalleMinisterio::select('miembros.*', 'detalle_ministerio.Fecha as fecha_registro')
-        ->where('detalle_ministerio.CodMinist',$id)
-        ->join('miembros', 'miembros.Ci', 'detalle_ministerio.Ci')
-        ->get();
-        return view('dashboard.panel.ministerio.listadetalle', compact('usuarios','ministerio'));
+    {
+        $ministerio = Ministerio::where('ministerios.CodMinist', $id)->first();
+        $usuarios = DetalleMinisterio::select('miembros.*', 'detalle_ministerio.Fecha as fecha_registro')
+            ->where('detalle_ministerio.CodMinist', $id)
+            ->join('miembros', 'miembros.Ci', 'detalle_ministerio.Ci')
+            ->get();
+        return view('dashboard.panel.ministerio.listadetalle', compact('usuarios', 'ministerio'));
     }
 
     /**

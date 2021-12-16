@@ -88,3 +88,47 @@ $('#saveDetalleMinisterio').submit(function(e){
     
 });
 
+$('.modal-show-traspaso').click(function () {
+    $('#Modal-traspaso').modal('show');
+    ci=$(this).attr("data-id");
+    $.ajax({
+        url:`${base_url}/listapersona/${ci}`,
+        type:"GET",
+        datatype: "json",
+        success:function(data){   
+            console.log(data)
+            $('#nombre').val(data.Nombre);
+            $('#apellidoP').val(data.ApellidoP);
+            $('#apellidoM').val(data.ApellidoM);
+            $('#CI').val(data.CIn);
+            $('#telefono').val(data.Telefono);
+            $('#dirrecion').val(data.Direccionn);
+        }    
+     });
+});
+$('#form-traspaso').submit(function(e){
+    $('#Modal-traspaso').modal('hide');
+    e.preventDefault();
+    var form = $(this);
+    $.ajax({
+        url:form.attr('action'),
+        type:"POST",
+        datatype: "json",
+        data: $('#form-traspaso').serialize(), 
+        success:function(data){   
+            if(data.status == "guardado"){
+                swal({
+                    title: data.message,
+              }).then(function () {
+                  window.location.href=`${base_url}/miembroslista`;
+              });
+            }else{
+                swal({
+                    title: data.message,
+              })
+                
+            }
+        }    
+     });
+});
+

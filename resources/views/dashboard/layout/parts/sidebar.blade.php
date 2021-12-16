@@ -4,6 +4,8 @@
       <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Inicio
     </a>
   </li>
+
+  @if (Auth::user()->isAdmin())
   <li>
     <a href="#!" class="btn-sideBar-SubMenu">
       <i class="zmdi zmdi-male-female"></i> Miembros <i class="zmdi zmdi-caret-down pull-right"></i>
@@ -15,9 +17,12 @@
       <li>
         <a href="{{ route('miembro.index') }}"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Lista de Miembros</a>
       </li>
-        
+      
     </ul>
   </li>
+  @endif
+
+  @if (Auth::user()->isAdmin())
   <li>
     <a href="#!" class="btn-sideBar-SubMenu">
       <i class="zmdi zmdi-tab zmdi-hc-fw"></i> Ministerios <i class="zmdi zmdi-caret-down pull-right"></i>
@@ -31,6 +36,9 @@
       </li>
     </ul>
   </li>
+  @endif
+
+  @if (Auth::user()->isAdmin())
   <li>
     <a href="#!" class="btn-sideBar-SubMenu">
       <i class="zmdi zmdi-card zmdi-hc-fw"></i> Diezmos y Ofrenda <i class="zmdi zmdi-caret-down pull-right"></i>
@@ -44,14 +52,50 @@
       </li>
     </ul>
   </li>
+  @endif
+
+  @if (Auth::user()->isAdmin()||Auth::user()->isEvangelista())
   <li>
     <a href="#!" class="btn-sideBar-SubMenu">
-      <i class="zmdi zmdi-shield-security zmdi-hc-fw"></i> Reportes <i class="zmdi zmdi-caret-down pull-right"></i>
+      <i class="zmdi zmdi-card zmdi-hc-fw"></i>Personas Nuevas<i class="zmdi zmdi-caret-down pull-right"></i>
     </a>
     <ul class="list-unstyled full-box">
       <li>
-        <a href="school.html"><i class="zmdi zmdi-balance zmdi-hc-fw"></i> Reporte General</a>
+        <a href="{{ route('persona.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Registro de Persona</a>
+      </li>
+      <li>
+        <a href="{{ route('listapersona.show') }}"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Lista de Personas</a>
       </li>
     </ul>
   </li>
+  @endif
+
+  @if (Auth::user()->isAdmin()||Auth::user()->isEvangelista())
+  <li>  
+    <a href="#!" class="btn-sideBar-SubMenu">
+      <i class="zmdi zmdi-card zmdi-hc-fw"></i>Actividad<i class="zmdi zmdi-caret-down pull-right"></i>
+    </a>
+    <ul class="list-unstyled full-box">
+      <li>
+        <a href="{{ route('actividad.create') }}"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Registro y Lista</a>
+      </li>
+    </ul>
+  </li>
+  @endif
+
+  @if (Auth::user()->isAlabanza())
+  <li>
+    <a href="#!" class="btn-sideBar-SubMenu">
+      <i class="zmdi zmdi-card zmdi-hc-fw"></i>Alabanzas<i class="zmdi zmdi-caret-down pull-right"></i>
+    </a>
+    <ul class="list-unstyled full-box">
+      <li>
+        <a href="{{ route('alabanza.create') }}"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Registro de Alabanzas</a>
+      </li>
+      <li>
+        <a href="{{ route('alabanza.show') }}"><i class="zmdi zmdi-book zmdi-hc-fw"></i>Lista de Alabanza</a>
+      </li>
+    </ul>
+  </li>
+  @endif
 </ul>

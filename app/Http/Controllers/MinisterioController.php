@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Ministerio;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,8 @@ class MinisterioController extends Controller
      */
     public function index()
     {
-        
-        $ministerios=Ministerio::get();
+
+        $ministerios = Ministerio::get();
         return view('dashboard.panel.ministerio.ministeriocreate', compact('ministerios'));
     }
 
@@ -28,6 +29,14 @@ class MinisterioController extends Controller
         //
     }
 
+    public function imprimir()
+    {
+        $ministerios = Ministerio::get();
+        $pdf = \PDF::loadview('dashboard.panel.ministerio.pdfministerio', compact('ministerios'));
+        //return $pdf->stream();
+        return $pdf->download('ministerios.pdf');
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -36,8 +45,8 @@ class MinisterioController extends Controller
      */
     public function store(Request $request)
     {
-        $verificarCi=Ministerio::where("CodMinist", $request->CodMinist)->first();
-        if ($verificarCi==null) {
+        $verificarCi = Ministerio::where("CodMinist", $request->CodMinist)->first();
+        if ($verificarCi == null) {
             $save = Ministerio::insert([
                 "CodMinist" => $request->CodMinist,
                 "NombreMinist" => $request->NombreMinist,
@@ -46,7 +55,7 @@ class MinisterioController extends Controller
                 "DireccionM" => $request->DireccionM,
             ]);
             return response()->json("registrado", 200);
-        }else {
+        } else {
             return response()->json("Ministerio ya existe", 200);
         }
     }
@@ -59,7 +68,7 @@ class MinisterioController extends Controller
      */
     public function show()
     {
-        $ministerios=Ministerio::get();
+        $ministerios = Ministerio::get();
         return view('dashboard.panel.ministerio.listaministerio', compact('ministerios'));
     }
 
@@ -71,7 +80,7 @@ class MinisterioController extends Controller
      */
     public function edit($id)
     {
-        $ministerio=Ministerio::where("CodMinist", $id)->first();
+        $ministerio = Ministerio::where("CodMinist", $id)->first();
         return view('dashboard.panel.ministerio.ministerioedit', compact('ministerio'));
     }
 
@@ -89,10 +98,10 @@ class MinisterioController extends Controller
             "Telefono" => $request->Telefono,
             "FechaR" => $request->FechaR,
             "DireccionM" => $request->DireccionM,
-            
+
         ]);
         return response()->json("Modificado", 200);
-   
+
     }
 
     /**

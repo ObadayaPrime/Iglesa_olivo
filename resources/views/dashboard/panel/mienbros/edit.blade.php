@@ -12,12 +12,6 @@
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
 				<li>
-					<a href="#!" class="btn-Notifications-area">
-						<i class="zmdi zmdi-notifications-none"></i>
-						<span class="badge">7</span>
-					</a>
-				</li>
-				<li>
 					<a href="#!" class="btn-search">
 						<i class="zmdi zmdi-search"></i>
 					</a>
@@ -94,9 +88,14 @@
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 											  <div class="form-group">
 												<label class="control-label">Sexo</label>
-												  <select required name="sexo" value="{{ $miembro->sexo }}" class="form-control">
-													<option>Masculino</option>
-													<option>Femenino</option>
+												  <select required name="sexo" class="form-control">
+													@if ($miembro->sexo=='Masculino')
+													<option selected value="Masculino">Masculino</option>
+													<option value="Femenino">Femenino</option>
+													@else
+													<option value="Masculino" >Masculino</option>
+													<option value="Femenino" selected>Femenino</option>
+													@endif												
 												  </select>
 											  </div>
 											</div>
@@ -104,8 +103,8 @@
 											<div class="form-group">
 										      <label class="control-label">Estado</label>
 										        <select required name="Estado" value="{{ $miembro->Estado }}" class="form-control">
-										          <option>Activo</option>
-										          <option>Inactivo</option>
+										          <option {{$miembro->Estado=='Activo' ? 'selected' : ''}} value="Activo">Activo</option>
+										          <option {{$miembro->Estado=='Inactivo' ? 'selected' : ''}} value="Inactivo">Inactivo</option>
 										        </select>
 										    </div>
 										</div>

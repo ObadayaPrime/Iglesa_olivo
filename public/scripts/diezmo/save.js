@@ -23,3 +23,30 @@ $('#saveDiezmo').submit(function(e){
         }    
      });
     })
+
+    $('#updateDiezmo').submit(function(e){
+        e.preventDefault();
+        console.log("aqui");
+        var form = $(this);
+        $.ajax({
+            url:form.attr('action'),
+            type:"PUT",
+            datatype: "json",
+            data: $('#updateDiezmo').serialize() , 
+            success:function(data){   
+                console.log(data)            
+                if(data == "Modificado"){
+                    swal({
+                        title: data,
+                  }).then(function () {
+                      window.location.href=`${base_url}/listadiezmos`;
+                  });
+                }else{
+                    swal({
+                        title: data,
+                  })
+                    
+                }
+            }    
+         });
+    });

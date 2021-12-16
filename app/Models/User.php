@@ -57,4 +57,39 @@ class User extends Authenticatable
         return $this->hasOne(Rol::class, 'rolId');
         //return $this->hasMany(Persona::class,'personaId' );
     }*/
+    public function isAdmin(){
+        $verificar=DB::table('roles_admin')->where('roles_id',1)->where('admin_id',auth()->user()->id)->first();
+        if ($verificar==null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public function isEvangelista(){
+        $verificar=DB::table('roles_admin')->where('roles_id',2)->where('admin_id',auth()->user()->id)->first();
+        if ($verificar==null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public function isAlabanza(){
+        $verificar=DB::table('roles_admin')->where('roles_id',3)->where('admin_id',auth()->user()->id)->first();
+        if ($verificar==null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public function isOracion(){
+        $verificar=DB::table('roles_admin')->where('roles_id',6)->where('admin_id',auth()->user()->id)->first();
+        if ($verificar==null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
 }

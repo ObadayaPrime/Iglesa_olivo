@@ -11,12 +11,7 @@
 				<li class="pull-left">
 					<a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
 				</li>
-				<li>
-					<a href="#!" class="btn-Notifications-area">
-						<i class="zmdi zmdi-notifications-none"></i>
-						<span class="badge">7</span>
-					</a>
-				</li>
+				
 				<li>
 					<a href="#!" class="btn-search">
 						<i class="zmdi zmdi-search"></i>
@@ -32,7 +27,7 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Registro de Diezmos </h1>
+			  <h1 class="text-titles"><i class="zmdi zmdi-account zmdi-hc-fw"></i> Registro de Usuario </h1>
 			</div>
 		</div>
 		<div class="container-fluid">
@@ -71,16 +66,14 @@
 											  </div>
 											</div>
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
-                                                <div class="form-group">
                                                   <label class="control-label">Rol</label>
                                                     <select required name="rol" class="form-control">
-                                                      <option>1</option>
-                                                      <option>2</option>
+                                                     @foreach ($roles as $rol)
+														 <option value="{{$rol->id}}">{{$rol->nombre}}</option>
+													 @endforeach
                                                     </select>
-                                                </div>
                                               </div>
-										</div>
-										
+											</div>
 										<div class="row">
 											<div class="col-xs-12 col-md-4 col-md-offset-1">
 												<label class="control-label">Nombre</label>
@@ -90,7 +83,7 @@
 												 @endforeach
 												</select>
 											</div>
-									</div>
+										</div>
 										    <p class="text-center">
 										    	<button href="#!" class="btn btn-info btn-raised btn-sm"><i class="zmdi zmdi-floppy"></i> Guardar</button>
 										    </p>

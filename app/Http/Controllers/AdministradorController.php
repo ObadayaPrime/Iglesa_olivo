@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Miembros;
 use Illuminate\Http\Request;
+use DB;
 
 class AdministradorController extends Controller
 {
@@ -16,7 +17,8 @@ class AdministradorController extends Controller
     {
         $admin=User::get();
         $miembros=Miembros::get();
-        return view('dashboard.panel.administrador.administrador', compact('admin','miembros'));
+        $roles=DB::table('roles')->where('estado',1)->get();
+        return view('dashboard.panel.administrador.administrador', compact('admin','miembros','roles'));
 
        
     }
@@ -41,12 +43,17 @@ class AdministradorController extends Controller
     {
         $verificarUser=User::where("user", $request->user)->first();
         if ($verificarUser==null) {
-            $save = User::insert([
+            $usuario = User::insertGetId([
                 "user" => $request->user,
                 "password" => $request->password,
                 "email" => $request->email,
                 "rol" => $request->rol,
                 "Ci" => $request->Ci,
+            ]);
+            $roles=DB::table('roles_admin')->insert([
+                "estado" => 1,
+                "admin_id" => $usuario,
+                "roles_id" => $request->rol,
             ]);
             return response()->json("registrado", 200);
         }else {

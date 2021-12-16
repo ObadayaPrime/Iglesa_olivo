@@ -15,9 +15,9 @@ class MienbrosController extends Controller
      */
     public function index()
     {
-        $miembros=Miembros::get();
-        $ministerios=Ministerio::get();
-        return view('dashboard.panel.mienbros.nuevo', compact('miembros','ministerios'));
+        $miembros = Miembros::get();
+        $ministerios = Ministerio::get();
+        return view('dashboard.panel.mienbros.nuevo', compact('miembros', 'ministerios'));
     }
 
     /**
@@ -29,7 +29,14 @@ class MienbrosController extends Controller
     {
 
     }
+    public function imprimir()
+    {
+        $miembros = Miembros::get();
+        $pdf = \PDF::loadview('dashboard.panel.mienbros.pdfmiembros', compact('miembros'));
+        //return $pdf->stream();
+        return $pdf->download('miembros.pdf');
 
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -39,8 +46,8 @@ class MienbrosController extends Controller
     public function store(Request $request)
     {
 
-        $verificarCi=Miembros::where("Ci", $request->CI)->first();
-        if ($verificarCi==null) {
+        $verificarCi = Miembros::where("Ci", $request->CI)->first();
+        if ($verificarCi == null) {
             $save = Miembros::insert([
                 "Ci" => $request->CI,
                 "nombre" => $request->nombre,
@@ -53,10 +60,10 @@ class MienbrosController extends Controller
                 "Direccion" => $request->dirrecion,
             ]);
             return response()->json("registrado", 200);
-        }else {
+        } else {
             return response()->json("usuario ya existe", 200);
         }
-       
+
     }
 
     /**
@@ -67,9 +74,9 @@ class MienbrosController extends Controller
      */
     public function show()
     {
-        $miembros=Miembros::get();
-        $ministerios=Ministerio::get();
-        return view('dashboard.panel.mienbros.lista', compact('miembros','ministerios'));
+        $miembros = Miembros::get();
+        $ministerios = Ministerio::get();
+        return view('dashboard.panel.mienbros.lista', compact('miembros', 'ministerios'));
     }
 
     /**
@@ -80,7 +87,7 @@ class MienbrosController extends Controller
      */
     public function edit($id)
     {
-        $miembro=Miembros::where("Ci", $id)->first();
+        $miembro = Miembros::where("Ci", $id)->first();
         return view('dashboard.panel.mienbros.edit', compact('miembro'));
     }
 
@@ -93,19 +100,19 @@ class MienbrosController extends Controller
      */
     public function update(Request $request, $id)
     {
-       //dd($request->all());
-            $save = Miembros::where("Ci", $request->Ci)->update([
-                "nombre" => $request->nombre,
-                "apellidoP" => $request->apellidoP,
-                "apellidoM" => $request->apellidoM,
-                "FechaNac" => $request->FechaNac,
-                "sexo" => $request->sexo,
-                "Telefono" => $request->Telefono,
-                "Estado" => $request->Estado,
-                "Direccion" => $request->Direccion,
-            ]);
-            return response()->json("Modificado", 200);
-       
+        //dd($request->all());
+        $save = Miembros::where("Ci", $request->Ci)->update([
+            "nombre" => $request->nombre,
+            "apellidoP" => $request->apellidoP,
+            "apellidoM" => $request->apellidoM,
+            "FechaNac" => $request->FechaNac,
+            "sexo" => $request->sexo,
+            "Telefono" => $request->Telefono,
+            "Estado" => $request->Estado,
+            "Direccion" => $request->Direccion,
+        ]);
+        return response()->json("Modificado", 200);
+
     }
 
     /**

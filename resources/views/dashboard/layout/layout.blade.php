@@ -104,7 +104,8 @@
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('js/material.min.js')}}"></script>
 	<script src="{{asset('js/ripples.min.js')}}"></script>
-	<script src="{{asset('js/main.js')}}"></script>
+	<script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}" ></script>
+	
 
 	<script>
 		$.material.init();
@@ -118,7 +119,7 @@
         });
     </script>
 	 @stack('javascript-form')
-	 
-	 <script src="{{asset('js/jquery.mCustomScrollbar.concat.min.js')}}" ></script>
+	 <script src="{{asset('js/main.js')}}"></script>
+	
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Ofrenda;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class OfrendaController extends Controller
      */
     public function index()
     {
-        $ingresos=Ofrenda::join('admin','admin.id','ingresos.CodAdmin')
-        ->get();
-       
+        $ingresos = Ofrenda::join('admin', 'admin.id', 'ingresos.CodAdmin')
+            ->get();
+
         return view('dashboard.panel.ingresos.ofrenda', compact('ingresos'));
 
     }
@@ -30,6 +31,16 @@ class OfrendaController extends Controller
         //
     }
 
+    public function imprimir()
+    {
+        $ingresos = Ofrenda::join('admin', 'admin.id', 'ingresos.CodAdmin')
+            ->get();
+        $pdf = \PDF::loadview('dashboard.panel.ingresos.pdfofrenda', compact('ingresos'));
+        //return $pdf->stream();
+        return $pdf->download('ofrenda.pdf');
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -38,16 +49,15 @@ class OfrendaController extends Controller
      */
     public function store(Request $request)
     {
-        
-            $save = Ofrenda::insert([
-                "Cultos" => $request->Cultos,
-                "Fecha" => $request->Fecha,
-                "Monto" => $request->Monto,
-                "Dolar" => $request->Dolar,
-                "CodAdmin" =>auth()->user()->id,
-               
-            ]);
-            return response()->json("Se Registro la Ofrenda", 200);
+
+        $save = Ofrenda::insert([
+            "Cultos" => $request->Cultos,
+            "Fecha" => $request->Fecha,
+            "Monto" => $request->Monto,
+            "CodAdmin" => auth()->user()->id,
+
+        ]);
+        return response()->json("Se Registro la Ofrenda", 200);
     }
 
     /**

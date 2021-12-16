@@ -11,13 +11,10 @@ class Ofrenda extends Model
     protected $table = 'ingresos';
     protected $primaryKey = 'CodIngreso';
 
-
-
     protected $fillable = [
         'Culto',
         'Fecha',
         'Monto',
-        'Dolar',
-        
+
     ];
 }

@@ -11,13 +11,10 @@ class Diezmo extends Model
     protected $table = 'diezmos';
     protected $primaryKey = 'Cod';
 
-
-
     protected $fillable = [
         'Ci',
         'Fecha',
         'Bs',
-        'Dolar',
-        
+
     ];
 }
