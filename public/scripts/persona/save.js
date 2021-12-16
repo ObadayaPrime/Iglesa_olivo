@@ -1,3 +1,4 @@
+
 $('#savePersona').submit(function(e){
     e.preventDefault();
     console.log("aqui estoy")
@@ -12,7 +13,7 @@ $('#savePersona').submit(function(e){
                 swal({
                     title: data,
               }).then(function () {
-                  window.location.href=`${base_url}/persona`;
+                  window.location.href=`${base_url}/listapersona`;
               });
             }else{
                 swal({

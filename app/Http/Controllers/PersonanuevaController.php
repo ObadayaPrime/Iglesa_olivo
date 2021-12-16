@@ -51,17 +51,18 @@ class PersonanuevaController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $verificarCIn = Personanueva::where("CIn", $request->CIn)->first();
         if ($verificarCIn == null) {
             $save = Personanueva::insert([
-                "CIn" => $request->CI,
+                "CIn" => $request->CIn,
                 "Nombre" => $request->Nombre,
-                "ApellidoP" => $request->ApellidoP,
-                "ApellidoM" => $request->ApellidoM,
+                "ApellidoP" => $request->ApelldoP,
+                "ApellidoM" => $request->ApelldoM,
                 "Sexo" => $request->Sexo,
-                "Telefono" => $request->telefono,
+                "Telefono" => $request->Telefono,
                 "Actividad" => $request->Actividad,
-                "Direccionn" => $request->Direccionn,
+                "Direccionn" => $request->Dirrecionn,
             ]);
             return response()->json("registrado", 200);
         } else {

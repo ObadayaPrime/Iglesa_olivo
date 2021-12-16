@@ -58,10 +58,15 @@ $( ".ci" ).click(function() {
     ci=$(this).attr("id");
 });
 
+$('.modal-show-ministerio-persona').click(function () {
+    $('#modal-ministerio-persona').modal('show');
+   
+    var ci=$(this).attr("data-id");
+    $('#ci').val(ci);
+   
+});
 $('#saveDetalleMinisterio').submit(function(e){
     e.preventDefault();
-  
-    $('#ci').val(ci)
     var form = $(this);
     $.ajax({
         url:form.attr('action'),
@@ -89,7 +94,7 @@ $('#saveDetalleMinisterio').submit(function(e){
 });
 
 $('.modal-show-traspaso').click(function () {
-    $('#Modal-traspaso').modal('show');
+    $('#modal-ministerio-persona').modal('show');
     ci=$(this).attr("data-id");
     $.ajax({
         url:`${base_url}/listapersona/${ci}`,

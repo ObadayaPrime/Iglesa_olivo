@@ -78,7 +78,7 @@
                                     <td>{{ $miembro->Direccion}}</td>
                                     <td><a href="{{ route('miembro.edit',['id'=>$miembro->Ci]) }}" class="btn btn-success btn-raised btn-xs"><i class="zmdi zmdi-refresh"></i></a></td>
                                     <td><a href="#!" class="btn btn-danger btn-raised btn-xs"><i class="zmdi zmdi-delete"></i></a></td>
-                                    <td><a href="#!" id="{{ $miembro->Ci}}" class="btn btn-primary btn-raised btn-xs btn-modal-help ci"><i class="zmdi zmdi-account-add zmdi-hc-fw"></i></a></td>
+                                    <td><a href="#!" data-id="{{ $miembro->Ci}}" class="btn btn-primary btn-raised btn-xs ci  modal-show-ministerio-persona"><i class="zmdi zmdi-account-add zmdi-hc-fw "></i></a></td>
 
                                 </tr>
                                 @endforeach
@@ -88,7 +88,7 @@
                </div> 
 		
 	</section>
-    <div class="modal fade" tabindex="-1" role="dialog" id="Dialog-Help">
+    <div class="modal fade" id="modal-ministerio-persona" tabindex="-1" role="dialog" id="Dialog-Help">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
